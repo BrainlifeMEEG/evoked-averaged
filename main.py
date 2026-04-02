@@ -21,11 +21,13 @@ Outputs:
 
 # Copyright (c) 2026 brainlife.io
 #
-# This app computes evoked responses from epoched MNE data.
+# Compute evoked responses from epoched MNE data.
 #
 # Authors:
-# - Saeed Zahran
+# - Saeed Zahran (https://github.com/zahransa)
 # - Maximilien Chaumon (https://github.com/dnacombo)
+#
+
 
 import os
 import sys
