@@ -15,7 +15,7 @@ Inputs:
 Outputs:
     - out_dir/evokeds_ave.fif: Evoked data in MNE format
     - out_figs/evoked.png: Evoked trace figure
-    - out_report/report.html: HTML QC report
+    - out_dir_report/report.html: HTML QC report
     - product.json: Brainlife.io product metadata
 """
 
@@ -49,7 +49,7 @@ from brainlife_utils import (
 setup_matplotlib_backend()
 
 # Ensure output directories exist
-ensure_output_dirs('out_dir', 'out_figs', 'out_report')
+ensure_output_dirs('out_dir', 'out_figs', 'out_dir_report')
 
 # Load configuration
 config = load_config()
@@ -95,7 +95,7 @@ fig_base64 = save_figure_with_base64(fig, fig_path, dpi_file=150, dpi_base64=80)
 # == CREATE REPORT ==
 report = mne.Report(title='Evoked Averaging Report')
 report.add_evokeds(evokeds=evoked, titles=titles)
-report.save(os.path.join('out_report', 'report.html'), overwrite=True)
+report.save(os.path.join('out_dir_report', 'report.html'), overwrite=True)
 
 # == SAVE DATA ==
 mne.write_evokeds(os.path.join('out_dir', 'evokeds_ave.fif'), evoked, overwrite=True)
