@@ -13,7 +13,7 @@ Computes evoked responses from epoched MNE data using configurable averaging opt
 
 ## Outputs
 
-- **out_dir/evokeds_ave.fif**: Evoked data in MNE format
+- **out_dir/ave.fif**: Evoked data in MNE format
 - **out_figs/evoked.png**: PNG visualization of evoked traces
 - **out_report/report.html**: HTML report with evoked visualizations
 - **product.json**: Brainlife.io metadata and preview information

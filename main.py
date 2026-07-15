@@ -13,7 +13,7 @@ Inputs:
     - by_event_type: Whether to compute one evoked per event type
 
 Outputs:
-    - out_dir/evokeds_ave.fif: Evoked data in MNE format
+    - out_dir/ave.fif: Evoked data in MNE format
     - out_figs/evoked.png: Evoked trace figure
     - out_report/report.html: HTML QC report
     - product.json: Brainlife.io product metadata
@@ -43,6 +43,7 @@ from brainlife_utils import (
     add_image_to_product,
     add_info_to_product,
     save_figure_with_base64,
+    require_config_keys,
 )
 
 # Set up matplotlib for headless execution
@@ -53,6 +54,7 @@ ensure_output_dirs('out_dir', 'out_figs', 'out_report')
 
 # Load configuration
 config = load_config()
+require_config_keys(config, ['fif'])
 
 # == LOAD EPOCHS ==
 epochs = mne.read_epochs(config['fif'], preload=True)
@@ -98,7 +100,7 @@ report.add_evokeds(evokeds=evoked, titles=titles)
 report.save(os.path.join('out_report', 'report.html'), overwrite=True)
 
 # == SAVE DATA ==
-mne.write_evokeds(os.path.join('out_dir', 'evokeds_ave.fif'), evoked, overwrite=True)
+mne.write_evokeds(os.path.join('out_dir', 'ave.fif'), evoked, overwrite=True)
 
 # == CREATE PRODUCT JSON ==
 product_items = []
