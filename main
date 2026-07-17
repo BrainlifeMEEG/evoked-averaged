@@ -3,6 +3,7 @@
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=00:10:00
 #PBS -l mem=4gb
+#SBATCH --mem=10G
 
 # Make output directories
 mkdir -p out_dir
