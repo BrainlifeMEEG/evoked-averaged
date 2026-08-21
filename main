@@ -4,9 +4,10 @@
 #PBS -l walltime=00:10:00
 #SBATCH --mem=3G
 
+set -e
+set -x
+
 # Make output directories
-mkdir -p out_dir
-mkdir -p out_figs
 mkdir -p out_report
 
 singularity exec docker://brainlifemeeg/mne:1.12.1 python3 main.py
