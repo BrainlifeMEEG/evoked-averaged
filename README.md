@@ -1,5 +1,49 @@
 # Compute Evoked Responses from Epoched Data
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+> **Computes evoked responses from epoched MEG/EEG data with MNE-Python Epochs.average, optionally one per event type, and outputs an MNE evoked file, a figure and an HTML report.**
+
+Loads MNE epochs and averages them with mne.Epochs.average using the chosen channel picks and combination method (mean or median), either all together or separately for each condition. Produces ave.fif, a plot of the evoked response and an HTML QC report. Use it after epoching (and artifact rejection) to obtain ERPs/ERFs for later analyses.
+
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/meeg/mne/epochs` |
+| 📤 **Outputs** | `neuro/meeg/mne/evoked` · `report/html` |
+| 🐳 **Container** | `brainlifemeeg/mne:1.12.1` |
+| ⚙️ **Resources** | 1 CPUs · 3 GB memory |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.618](https://doi.org/10.25663/brainlife.app.618) |
+
+#### 📥 Inputs
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `fif` | `neuro/meeg/mne/epochs` | yes | Epoched MEG/EEG data (MNE -epo.fif). |
+
+#### 📤 Outputs
+
+| Output | Datatype | Description |
+|---|---|---|
+| `out_dir` | `neuro/meeg/mne/evoked` | Evoked response(s) in MNE format (ave.fif), one per condition when by_event_type is true. |
+| `out_dir_report` | `report/html` | HTML report (report.html) with the evoked response visualisations. |
+
+<details>
+<summary><b>⚙️ Parameters</b> (3)</summary>
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `picks` | string |  | The channel type to plot. For 'grad', the gradiometers are collected in pairs and the RMS for each pair is plotted. If None the first available channel type from order shown above is used. Defaults to None. |
+| `method` | string | `mean` | How to combine epochs: 'mean' or 'median' (passed to Epochs.average). |
+| `by_event_type` | boolean | `true` | If true, one Evoked object is computed per event type (condition); if false, all epochs are averaged together. |
+
+</details>
+
+📚 **References used by this App:**
+- Hayashi S., Caron B. A., Heinsfeld A. S. et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. Nature Methods 21, 809-813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
+- Gramfort A. et al. MEG and EEG data analysis with MNE-Python. Frontiers in Neuroscience 7:267 (2013). [doi:10.3389/fnins.2013.00267](https://doi.org/10.3389/fnins.2013.00267)
+
+<!-- brainlife-app:end -->
+
 [![Run on Brainlife.io](https://img.shields.io/badge/Brainlife-bl.app.618-blue.svg)](https://doi.org/10.25663/brainlife.app.618)
 
 ## Description
